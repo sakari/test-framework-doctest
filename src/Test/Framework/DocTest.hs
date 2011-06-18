@@ -4,7 +4,7 @@ First we get the doctests wrapped in 'Test.Framework.Test' using
 'frameDocTestsFrom'.  The first argument to 'frameDocTestsFrom' should be the root module
 i.e., a module that includes all the other modules.
 
->>> doctests <- frameDocTestsFrom "tests/Test.hs" ["-itests"]
+>>> doctests <- frameDocTestsFrom ["tests/Test.hs"] ["-itests"]
 
 After getting the doctests we can execute the doctests using the
 'defaultMain' or 'defaultMainWithOpts' functions.
@@ -48,11 +48,15 @@ defaultOptions = RunnerOptions { ropt_threads = Nothing
                                }
 
 -- | Note that 'frameDocTestsFrom' can be called only once per process execution
+--
+-- You only need to give paths to modules that are not imported from any other module 
 
-frameDocTestsFrom::FilePath -> [String] -> IO Test
-frameDocTestsFrom rootPath options = do
-  tests <- DocTest.getDocTests [Flag_Verbosity "0", Flag_NoWarnings] [rootPath]
-  return $ toTestFrameworkGroup (rootPath:options) tests
+frameDocTestsFrom::[FilePath] -- ^ Paths to root modules
+                   -> [String] -- ^ Options passed to ghci
+                   -> IO Test
+frameDocTestsFrom rootPaths options = do
+  tests <- DocTest.getDocTests [Flag_Verbosity "0", Flag_NoWarnings] rootPaths
+  return $ toTestFrameworkGroup (rootPaths ++ options) tests
   
 toTestFrameworkTest :: [String] -> DocTest.DocTest -> Test 
 toTestFrameworkTest options test = testCase testName $ DocTest.withInterpreter options $ flip DocTest.toAssertion test
