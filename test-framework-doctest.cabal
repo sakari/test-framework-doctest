@@ -19,7 +19,7 @@ test-suite doctest
     base >= 4,
     test-framework,
     test-framework-hunit,
-    DocTest,
+    doctest >= 0.3.0,
     haddock
 
 Library
@@ -28,7 +28,7 @@ Library
   Exposed-modules: Test.Framework.DocTest
   Build-depends:
     base,    
-    DocTest,
+    doctest >= 0.3.0,
     test-framework,
     test-framework-hunit,
     haddock

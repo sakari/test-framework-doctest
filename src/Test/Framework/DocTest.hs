@@ -35,7 +35,7 @@ Just True
 module Test.Framework.DocTest (frameDocTestsFrom) where
 
 import Documentation.Haddock
-import qualified DocTest
+import qualified Test.DocTest as DocTest
 import Test.Framework
 import Test.Framework.Providers.HUnit
 
@@ -60,4 +60,4 @@ toTestFrameworkTest options test = testCase testName $ DocTest.withInterpreter o
     testName = DocTest.expression $ head $ DocTest.interactions test
 
 toTestFrameworkGroup :: [String] -> [DocTest.DocTest] -> Test
-toTestFrameworkGroup options = mutuallyExclusive . testGroup "DocTest" . map (toTestFrameworkTest options)
+toTestFrameworkGroup options = testGroup "DocTest" . map (toTestFrameworkTest options)
