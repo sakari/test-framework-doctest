@@ -9,7 +9,7 @@ i.e., a module that includes all the other modules.
 After getting the doctests we can execute the doctests using the
 'defaultMain' or 'defaultMainWithOpts' functions.
 
->>> defaultMainWithOpts [doctests] defaultOptions
+>>> defaultMainWithOpts [doctests] $ defaultOptions { ropt_plain_output = Just True }
 DocTest:
   print "abc": [Failed]
 Failed: expression `print "abc"'
@@ -24,11 +24,8 @@ expected: ["\"fail\""]
 *** Exception: ExitFailure 1
 
 Above we used 'defaultMainWithOpts' for running the tests so that we
-can specify that we want plain output as coloride output is not very
-readable:
-
->>> print $ ropt_plain_output defaultOptions
-Just True
+can specify that we want plain output instead of colored
+output. Colored output looks like line noise in DocTests.
 
 -}
 
@@ -43,7 +40,7 @@ defaultOptions = RunnerOptions { ropt_threads = Nothing
                                , ropt_test_options = Nothing
                                , ropt_test_patterns = Nothing
                                , ropt_xml_output = Nothing 
-                               , ropt_plain_output = Just True
+                               , ropt_plain_output = Nothing
                                , ropt_hide_successes = Nothing
                                }
 
