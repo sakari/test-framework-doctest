@@ -56,6 +56,7 @@ frameDocTestsFrom::[FilePath] -- ^ Paths to root modules
                    -> IO Test
 frameDocTestsFrom rootPaths options = do
   tests <- DocTest.getDocTests [Flag_Verbosity "0", Flag_NoWarnings] rootPaths
+  tests <- DocTest.getDocTests ([Flag_Verbosity "0", Flag_NoWarnings] ++ map Flag_OptGhc options)  rootPaths
   return $ toTestFrameworkGroup (rootPaths ++ options) tests
   
 toTestFrameworkTest :: [String] -> DocTest.DocTest -> Test 
