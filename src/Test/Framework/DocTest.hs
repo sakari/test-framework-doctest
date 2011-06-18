@@ -27,6 +27,9 @@ Above we used 'defaultMainWithOpts' for running the tests so that we
 can specify that we want plain output instead of colored
 output. Colored output looks like line noise in DocTests.
 
+The @*** Exception: ExitFailure 1@ is caused by
+'defaultMainWithOptions' trying to exit after finishing with tests.
+
 -}
 
 module Test.Framework.DocTest (frameDocTestsFrom) where
