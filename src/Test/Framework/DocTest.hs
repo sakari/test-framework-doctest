@@ -1,10 +1,10 @@
 {-| Wrapper for running DocTests with Test.Framework 
 
 First we get the doctests wrapped in 'Test.Framework.Test' using
-'frameDocTestsFrom'.  The first argument to 'frameDocTestsFrom' should be the root module
-i.e., a module that includes all the other modules.
+'docTest'.  The first argument to 'docTest' should the root modules
+i.e., the modules that are not imported by other modules.
 
->>> doctests <- frameDocTestsFrom ["tests/Test.hs"] ["-itests"]
+>>> doctests <- docTest ["tests/Test.hs"] ["-itests"]
 
 After getting the doctests we can execute the doctests using the
 'defaultMain' or 'defaultMainWithOpts' functions.
@@ -32,7 +32,7 @@ The @*** Exception: ExitFailure 1@ is caused by
 
 -}
 
-module Test.Framework.DocTest (frameDocTestsFrom) where
+module Test.Framework.DocTest (docTest) where
 
 import Documentation.Haddock
 import qualified Test.DocTest as DocTest
@@ -47,15 +47,14 @@ defaultOptions = RunnerOptions { ropt_threads = Nothing
                                , ropt_hide_successes = Nothing
                                }
 
--- | Note that 'frameDocTestsFrom' can be called only once per process execution
+-- | Note that 'docTest' can be called only once per process execution
 --
 -- You only need to give paths to modules that are not imported from any other module 
 
-frameDocTestsFrom::[FilePath] -- ^ Paths to root modules
-                   -> [String] -- ^ Options passed to ghci
-                   -> IO Test
-frameDocTestsFrom rootPaths options = do
-  tests <- DocTest.getDocTests [Flag_Verbosity "0", Flag_NoWarnings] rootPaths
+docTest::[FilePath] -- ^ Paths to root modules
+         -> [String] -- ^ Options passed to ghci
+         -> IO Test
+docTest rootPaths options = do
   tests <- DocTest.getDocTests ([Flag_Verbosity "0", Flag_NoWarnings] ++ map Flag_OptGhc options)  rootPaths
   return $ toTestFrameworkGroup (rootPaths ++ options) tests
   
