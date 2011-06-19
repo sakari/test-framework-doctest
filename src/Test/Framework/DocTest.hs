@@ -11,11 +11,12 @@ After getting the doctests we can execute the doctests using the
 
 >>> defaultMainWithOpts [doctests] $ defaultOptions { ropt_plain_output = Just True }
 DocTest:
-  print "abc": [Failed]
+  tests/Test.hs:
+    print "abc": [Failed]
 Failed: expression `print "abc"'
 expected: ["\"fail\""]
  but got: ["\"abc\""]
-  print bar: [OK]
+    print bar: [OK]
 <BLANKLINE>
          Test Cases  Total      
  Passed  1           1          
@@ -38,6 +39,7 @@ import Documentation.Haddock
 import qualified Test.DocTest as DocTest
 import Test.Framework
 import Test.Framework.Providers.HUnit
+import Data.List(groupBy)
 
 defaultOptions = RunnerOptions { ropt_threads = Nothing
                                , ropt_test_options = Nothing
@@ -64,4 +66,9 @@ toTestFrameworkTest options test = testCase testName $ DocTest.withInterpreter o
     testName = DocTest.expression $ head $ DocTest.interactions test
 
 toTestFrameworkGroup :: [String] -> [DocTest.DocTest] -> Test
-toTestFrameworkGroup options = testGroup "DocTest" . map (toTestFrameworkTest options)
+toTestFrameworkGroup options examples = testGroup "DocTest" $ map fileTestGroup $ groupBy w examples
+  where
+    w left right = DocTest.source left == DocTest.source right  
+    fileTestGroup examples = testGroup fileName $ toTestFrameworkTest options `map` examples 
+      where 
+        fileName = DocTest.source $ head $ examples
