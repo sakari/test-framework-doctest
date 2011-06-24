@@ -25,7 +25,7 @@ test-suite doctest
 Library
   Hs-source-dirs: src
   default-language: Haskell98
-  Exposed-modules: Test.Framework.DocTest
+  Exposed-modules: Test.Framework.Providers.DocTest
   Build-depends:
     base,    
     doctest >= 0.3.0,

@@ -33,7 +33,7 @@ The @*** Exception: ExitFailure 1@ is caused by
 
 -}
 
-module Test.Framework.DocTest (docTest) where
+module Test.Framework.Providers.DocTest (docTest) where
 
 import Documentation.Haddock
 import qualified Test.DocTest as DocTest
