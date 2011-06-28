@@ -63,12 +63,12 @@ docTest rootPaths options = do
 toTestFrameworkTest :: [String] -> DocTest.DocTest -> Test 
 toTestFrameworkTest options test = testCase testName $ DocTest.withInterpreter options $ flip DocTest.toAssertion test
   where
-    testName = DocTest.expression $ head $ DocTest.interactions test
+    testName = DocTest.firstExpression test
 
 toTestFrameworkGroup :: [String] -> [DocTest.DocTest] -> Test
 toTestFrameworkGroup options examples = testGroup "DocTest" $ map fileTestGroup $ groupBy w examples
   where
-    w left right = DocTest.source left == DocTest.source right  
+    w left right = DocTest.sourcePath left == DocTest.sourcePath right
     fileTestGroup examples = testGroup fileName $ toTestFrameworkTest options `map` examples 
       where 
-        fileName = DocTest.source $ head $ examples
+        fileName = DocTest.sourcePath $ head $ examples
