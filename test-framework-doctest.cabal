@@ -10,6 +10,19 @@ Category:            Testing
 Build-type:          Simple
 Cabal-version:       >=1.10
 
+test-suite perf
+  main-is: PerfMain.hs
+  default-language: Haskell98
+  type: exitcode-stdio-1.0
+  ghc-options: -rtsopts -threaded
+  hs-source-dirs: src, tests
+  build-depends:
+    base >= 4,
+    test-framework,
+    test-framework-hunit,
+    doctest >= 0.3.0,
+    haddock
+  
 test-suite doctest
   main-is: Main.hs
   default-language: Haskell98
