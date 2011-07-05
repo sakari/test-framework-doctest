@@ -10,6 +10,10 @@ Category:            Testing
 Build-type:          Simple
 Cabal-version:       >=1.10
 
+extra-source-files:
+  tests/Main.hs
+  tests/Test.hs
+
 Source-repository head
   type: git
   location: git://github.com/sakari/test-framework-doctest.git
