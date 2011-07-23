@@ -1,7 +1,7 @@
 {-| Wrapper for running DocTests with Test.Framework 
 
 First we get the doctests wrapped in 'Test.Framework.Test' using
-'docTest'.  The first argument to 'docTest' should the root modules
+'docTest'.  The first argument to 'docTest' should be the root modules
 i.e., the modules that are not imported by other modules.
 
 >>> doctests <- docTest ["tests/Test.hs"] ["-itests"]
