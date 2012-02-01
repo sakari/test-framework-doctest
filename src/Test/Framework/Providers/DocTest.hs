@@ -1,3 +1,5 @@
+{-# LANGUAGE CPP #-}
+
 {-| Wrapper for running DocTests with Test.Framework 
 
 First we get the doctests wrapped in 'Test.Framework.Test' using
@@ -46,7 +48,11 @@ defaultOptions = RunnerOptions { ropt_threads = Nothing
                                , ropt_test_patterns = Nothing
                                , ropt_xml_output = Nothing 
                                , ropt_xml_nested = Nothing
+#if MIN_VERSION_test_framework(0,5,0)
                                , ropt_color_mode = Nothing
+#else
+                               , ropt_plain_output = Nothing
+#endif
                                , ropt_hide_successes = Nothing
                                }
 
