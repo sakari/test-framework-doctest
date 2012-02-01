@@ -45,6 +45,7 @@ defaultOptions = RunnerOptions { ropt_threads = Nothing
                                , ropt_test_options = Nothing
                                , ropt_test_patterns = Nothing
                                , ropt_xml_output = Nothing 
+                               , ropt_xml_nested = Nothing
                                , ropt_color_mode = Nothing
                                , ropt_hide_successes = Nothing
                                }
