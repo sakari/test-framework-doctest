@@ -1,5 +1,5 @@
 Name:                test-framework-doctest
-Version:             0.1
+Version:             0.2
 Synopsis:            Test.Framework wrapper for DocTest
 Description:         Test.Framework wrapper for DocTest
 License:             BSD3
