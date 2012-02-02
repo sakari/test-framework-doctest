@@ -11,11 +11,11 @@ i.e., the modules that are not imported by other modules.
 After getting the doctests we can execute the doctests using the
 'defaultMain' or 'defaultMainWithOpts' functions.
 
->>> defaultMainWithOpts [doctests] $ defaultOptions { ropt_plain_output = Just True }
+>>> defaultMainWithOpts [doctests] $ defaultOptions { ropt_color_mode = Just ColorNever }
 DocTest:
   tests/Test.hs:
     print "abc": [Failed]
-Failed: expression `print "abc"'
+expression `print "abc"'
 expected: ["\"fail\""]
  but got: ["\"abc\""]
     print bar: [OK]
