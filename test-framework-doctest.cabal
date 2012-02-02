@@ -21,7 +21,7 @@ Source-repository head
 Source-repository this
   type: git
   location: git://github.com/sakari/test-framework-doctest.git
-  tag: 0.1
+  tag: 0.2
 
 test-suite doctest
   main-is: Main.hs
