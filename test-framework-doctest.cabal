@@ -1,5 +1,5 @@
 Name:                test-framework-doctest
-Version:             0.2
+Version:             0.2.0.1
 Synopsis:            Test.Framework wrapper for DocTest
 Description:         Test.Framework wrapper for DocTest
 License:             BSD3
@@ -32,7 +32,7 @@ test-suite doctest
     base >= 4 && < 5,
     test-framework >= 0.4 && < 0.6,
     test-framework-hunit >= 0.2,
-    doctest >= 0.4.0,
+    doctest >= 0.4.0 && < 0.6,
     haddock
 
 Library
