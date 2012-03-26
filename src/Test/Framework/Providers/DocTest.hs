@@ -14,7 +14,7 @@ After getting the doctests we can execute the doctests using the
 >>> :m + Data.Monoid
 >>> defaultMainWithOpts [doctests] noColors
 DocTest:
-  tests/Test.hs:
+  Test:
     print "abc": [Failed]
 expression `print "abc"'
 expected: ["\"fail\""]
@@ -34,7 +34,6 @@ The @*** Exception: ExitFailure 1@ is caused by
 
 module Test.Framework.Providers.DocTest (docTest) where
 
-import Documentation.Haddock
 import qualified Test.DocTest as DocTest
 import Test.Framework
 import Test.Framework.Providers.HUnit
@@ -43,11 +42,7 @@ import Data.Monoid
 
 noColors :: RunnerOptions
 noColors =  mempty {
-#if MIN_VERSION_test_framework(0,5,0)
     ropt_color_mode = Nothing
-#else
-    ropt_plain_output = Just True
-#endif
 }
 
 -- | Note that 'docTest' can be called only once per process execution
