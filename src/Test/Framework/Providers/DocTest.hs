@@ -58,7 +58,7 @@ docTest::[FilePath] -- ^ Paths to root modules
          -> [String] -- ^ Options passed to ghci
          -> IO Test
 docTest rootPaths options = do
-  tests <- DocTest.getDocTests ([Flag_Verbosity "0", Flag_NoWarnings] ++ map Flag_OptGhc options)  rootPaths
+  tests <- DocTest.getDocTests options rootPaths
   return $ toTestFrameworkGroup (rootPaths ++ options) tests
 
 toTestFrameworkTest :: [String] -> DocTest.DocTest -> Test
