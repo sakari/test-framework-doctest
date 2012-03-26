@@ -16,12 +16,12 @@ extra-source-files:
 
 Source-repository head
   type: git
-  location: git://github.com/sakari/test-framework-doctest.git
+  location: https://github.com/sakari/test-framework-doctest
 
 Source-repository this
   type: git
-  location: git://github.com/sakari/test-framework-doctest.git
-  tag: 0.2.1
+  location: https://github.com/sakari/test-framework-doctest
+  tag: 0.2.1.1
 
 test-suite doctest
   main-is: Main.hs
