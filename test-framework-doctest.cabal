@@ -39,7 +39,7 @@ Library
   Exposed-modules: Test.Framework.Providers.DocTest
   Build-depends:
     base >= 4 && < 5,
-    doctest >= 0.6 && < 0.7,
+    doctest >= 0.6.0.1 && < 0.7,
     test-framework >= 0.6,
     test-framework-hunit >= 0.2
 
