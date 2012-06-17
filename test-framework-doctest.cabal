@@ -1,7 +1,9 @@
 Name:                test-framework-doctest
-Version:             0.2.1.1
+Version:             0.2.1.2
 Synopsis:            Test.Framework wrapper for DocTest
-Description:         Test.Framework wrapper for DocTest
+Description:         This package is deprecated, use Doctest`s cabal integration instead.
+                     .
+                     See: <https://github.com/sol/doctest-haskell#cabal-integration>
 License:             BSD3
 License-file:        LICENSE
 Author:              Sakari Jokinen
